@@ -2,6 +2,7 @@ package ru.geekbrains.homework.console;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.geekbrains.homework.Product;
+import ru.geekbrains.homework.beans.Cart;
 import ru.geekbrains.homework.beans.ProductService;
 import ru.geekbrains.homework.config.ContextConfig;
 
@@ -13,10 +14,14 @@ public class ConsoleLoop {
         System.out.println(
                 "Список команд: "+
                 "\n /prodlst - вывести список продуктов в магазине"+
-                "\n /cartlist -вывести список продуктов в корзине"+
+                "\n /cartlst -вывести список продуктов в корзине"+
                 "\n /fndbyid n -найти продукт в магазине по id(n)"+
                 "\n /addtocart n -добавить продукт в корзину по id(n)"+
-                "\n /remfromcart n - удалить продукт из корзины по (id)");
+                "\n /remfromcart n - удалить продукт из корзины по (id)"+
+                "\n /rcrt - пересоздать корзину"+
+                "\n /q -выход"
+
+        );
 
         context=new AnnotationConfigApplicationContext(ContextConfig.class);
         ProductService productService = context.getBean(ProductService.class);
@@ -58,6 +63,9 @@ public class ConsoleLoop {
                     }
 
                 }else System.out.println("Товара с таким номером нет в списке");
+            }else if(responce.getCommand().equals(API.REBASECRT)){
+                System.out.println("Хрен его знает, на кой ляд тебе этот *корзина* сдался, но я в чужие дела не лезу, хочешь убить, значит есть за что...");
+                productService.setCart(context.getBean(Cart.class));
             }else if (responce.getCommand().equals(API.QUIT)){ break;}
 
             else {

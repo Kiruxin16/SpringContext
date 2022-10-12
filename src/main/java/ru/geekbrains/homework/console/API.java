@@ -8,6 +8,8 @@ public class API {
     public static final String REMFROMCART="/remfromcart";
     public static final String FAIL="/fail";
 
+    public static final String REBASECRT = "/rcrt";
+
     public static final String QUIT="/q";
 
 
